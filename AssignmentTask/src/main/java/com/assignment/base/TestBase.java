@@ -21,7 +21,7 @@ public class TestBase {
 	
 	public TestBase()
 	{
-		//To  property file
+		//To load property file
 		prop=ReadPropertyFileUtil.loadConfigFile();
 	}
 
@@ -29,12 +29,9 @@ public class TestBase {
 	public static void initialization()
 	{
 		String browserName = prop.getProperty("BROWSER");
-		//System.out.println(browserName);
-		//System.out.println(browserName.equals("firefox"));
 		if(browserName.equals("firefox"))
 		{
 			System.setProperty("webdriver.gecko.driver", ".\\geckodriver.exe");
-			//System.setProperty("webdriver.gecko.driver", "D:\\Selenium\\MagentoRepo\\geckodriver.exe");//"D:\\Selenium\\MagentoRepo\\geckodriver.exe");
 			driver = new FirefoxDriver();
 		}
 		

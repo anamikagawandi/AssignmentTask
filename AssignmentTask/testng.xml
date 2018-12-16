@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Assignment Test" verbose="1" >
+  <test name="Assignment suite 1" >
+    <classes>
+    	<class name="com.assignment.testcase.SwiftCodePageTest"/>
+      	<class name="com.assignment.testcase.AmazonTestCase"/>
+    </classes>
+ </test>
+</suite>

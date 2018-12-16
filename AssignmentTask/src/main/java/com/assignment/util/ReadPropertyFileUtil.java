@@ -14,7 +14,7 @@ public static Properties prop;
 	{
 		try {
 			prop = new Properties();
-			FileInputStream ip = new FileInputStream(".\\com\\magento\\qa\\config\\config.properties");
+			FileInputStream ip = new FileInputStream(".\\src\\main\\java\\com\\assignment\\config\\config.properties");
 			prop.load(ip);
 			
 		}catch(FileNotFoundException e)

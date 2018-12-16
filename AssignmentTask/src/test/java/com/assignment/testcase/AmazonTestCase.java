@@ -1,49 +1,75 @@
 package com.assignment.testcase;
 
-import java.io.File;
+import java.util.List;
 
-import org.testng.Assert;
+import org.openqa.selenium.WebElement;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
+
 import org.testng.annotations.Test;
+import com.assignment.base.*;
+import com.assignment.pages.AmazonTestPage;
 
 
-public class AmazonTestCase {
+public class AmazonTestCase extends TestBase{
 	
-	CurrentTaskPage homePage;
-	LoginPage loginPage;
-	File file;
 	
-	public LoginPageTest()
+	AmazonTestPage amazon_page;
+	
+	//Constructor loads config file (in constructor of TestBase class) by using super method
+	public AmazonTestCase()
 	{
 		super();
-		file = ReadPropertyFileUtil.getLoginFileName();
 	}
 	
-	
+	//initializes the driver by calling init method of TestBase
 	@BeforeMethod
 	public void setup()
 	{
 		initialization();
-		loginPage =new LoginPage();
+		driver.get(prop.getProperty("URL1"));
+		amazon_page =new AmazonTestPage();
 	}
 
 
-
-	@Test(dataProvider="readLoginCreds" , priority=3)
-	public void validateLoginPageTest(String username, String password) 
+	//Test to retrieve all product img href with advertisements
+	@Test
+	public void getAllImgHrefWithAd() 
 	{
-		homePage=loginPage.goToCurrentTaskPage(username,password);
-		Assert.assertEquals(homePage.validateCurrentTaskPage(),"Current Task");
+		
+		List<WebElement> names=amazon_page.getAllImgHREFWithAd();
+		int i=0;
+		
+		for(WebElement e : names)
+		{
+			i++;
+			System.out.println("HREF "+i+": "+e.getAttribute("src"));
+		}
 	}
 	
-
+	//Test to retrieve all product img href without advertisements
+	@Test
+	public void getAllImgHref() 
+	{
+		
+		List<WebElement> names=amazon_page.getImgHREF();
+				
+		int i=0;
+		
+		for(WebElement e : names)
+		{
+			i++;
+			System.out.println("HREF "+i+": "+e.getAttribute("src"));
+		}
+	}
 	
+	
+	
+	//To quit browser after each test
 	@AfterMethod
 	public void tearDown()
 	{
-		//driver.close();
 		driver.quit();
 	}
 

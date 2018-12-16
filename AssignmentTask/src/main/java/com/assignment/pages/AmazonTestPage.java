@@ -25,8 +25,8 @@ public class AmazonTestPage extends TestBase{
 	//Returns list of product img WebElements excluding advertisements
 	public List<WebElement> getImgHREF()
 	{
-		//css will take img elements for which class is product-image
-		List<WebElement> names = driver.findElements(By.cssSelector(".product-image"));			
+		//css will take img elements for which class is product-image and src value ending with .jpg, ignoring any null values
+		List<WebElement> names = driver.findElements(By.cssSelector(".product-image[src$=\".jpg\"]"));			
 		return names;	
 			
 	}
